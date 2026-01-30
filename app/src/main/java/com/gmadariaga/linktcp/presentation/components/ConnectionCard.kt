@@ -26,8 +26,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import com.gmadariaga.linktcp.R
 import com.gmadariaga.linktcp.domain.model.ConnectionConfig
 import com.gmadariaga.linktcp.domain.model.ConnectionMode
 import com.gmadariaga.linktcp.domain.model.ConnectionState
@@ -67,7 +69,7 @@ fun ConnectionCard(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Connection",
+                    text = stringResource(R.string.connection),
                     style = MaterialTheme.typography.titleMedium
                 )
                 StatusIndicator(state = connectionState)
@@ -84,7 +86,12 @@ fun ConnectionCard(
                         ),
                         enabled = canEdit
                     ) {
-                        Text(mode.name.lowercase().replaceFirstChar { it.uppercase() })
+                        Text(
+                            if (mode == ConnectionMode.CLIENT)
+                                stringResource(R.string.mode_client)
+                            else
+                                stringResource(R.string.mode_server)
+                        )
                     }
                 }
             }
@@ -98,7 +105,7 @@ fun ConnectionCard(
                 ) {
                     Column(modifier = Modifier.padding(12.dp)) {
                         Text(
-                            text = "Your IP Address",
+                            text = stringResource(R.string.your_ip_address),
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.onPrimaryContainer
                         )
@@ -116,7 +123,7 @@ fun ConnectionCard(
                 OutlinedTextField(
                     value = config.host,
                     onValueChange = onHostChange,
-                    label = { Text("Host") },
+                    label = { Text(stringResource(R.string.host)) },
                     placeholder = { Text("192.168.1.1") },
                     modifier = Modifier.fillMaxWidth(),
                     singleLine = true,
@@ -127,7 +134,7 @@ fun ConnectionCard(
             OutlinedTextField(
                 value = config.port.toString(),
                 onValueChange = onPortChange,
-                label = { Text("Port") },
+                label = { Text(stringResource(R.string.port)) },
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
@@ -149,7 +156,7 @@ fun ConnectionCard(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Text(
-                        text = if (isListening) "Stop Server" else "Cancel"
+                        text = if (isListening) stringResource(R.string.stop_server) else stringResource(R.string.cancel)
                     )
                 }
             } else {
@@ -158,7 +165,7 @@ fun ConnectionCard(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Text(
-                        text = if (isConnected) "Disconnect" else "Connect"
+                        text = if (isConnected) stringResource(R.string.disconnect) else stringResource(R.string.connect)
                     )
                 }
             }
@@ -167,7 +174,7 @@ fun ConnectionCard(
             if (logs.isNotEmpty()) {
                 HorizontalDivider()
                 Text(
-                    text = "Logs",
+                    text = stringResource(R.string.logs),
                     style = MaterialTheme.typography.labelMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

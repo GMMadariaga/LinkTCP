@@ -16,7 +16,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.gmadariaga.linktcp.R
 import com.gmadariaga.linktcp.ui.theme.StatusConnected
 import com.gmadariaga.linktcp.ui.theme.StatusPending
 
@@ -39,13 +41,13 @@ fun TrafficIndicator(
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             TrafficItem(
-                icon = { Icon(Icons.AutoMirrored.Filled.CallMade, contentDescription = "Sent", tint = StatusPending) },
-                label = "Sent",
+                icon = { Icon(Icons.AutoMirrored.Filled.CallMade, contentDescription = stringResource(R.string.sent), tint = StatusPending) },
+                label = stringResource(R.string.sent),
                 value = formatBytes(bytesSent)
             )
             TrafficItem(
-                icon = { Icon(Icons.AutoMirrored.Filled.CallReceived, contentDescription = "Received", tint = StatusConnected) },
-                label = "Received",
+                icon = { Icon(Icons.AutoMirrored.Filled.CallReceived, contentDescription = stringResource(R.string.received), tint = StatusConnected) },
+                label = stringResource(R.string.received),
                 value = formatBytes(bytesReceived)
             )
         }

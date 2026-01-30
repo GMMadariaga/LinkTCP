@@ -23,6 +23,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.gmadariaga.linktcp.presentation.screen.AboutScreen
 import com.gmadariaga.linktcp.presentation.screen.HomeScreen
@@ -51,19 +52,26 @@ fun LinkTCPApp() {
     )
     var currentDestination by rememberSaveable { mutableStateOf(AppDestinations.CONNECTION) }
 
+    val labels = mapOf(
+        AppDestinations.CONNECTION to stringResource(R.string.nav_connect),
+        AppDestinations.LOG to stringResource(R.string.nav_log),
+        AppDestinations.ABOUT to stringResource(R.string.nav_about)
+    )
+
     NavigationSuiteScaffold(
         navigationSuiteItems = {
-            AppDestinations.entries.forEach {
+            AppDestinations.entries.forEach { destination ->
+                val label = labels[destination] ?: ""
                 item(
                     icon = {
                         Icon(
-                            it.icon,
-                            contentDescription = it.label
+                            destination.icon,
+                            contentDescription = label
                         )
                     },
-                    label = { Text(it.label) },
-                    selected = it == currentDestination,
-                    onClick = { currentDestination = it }
+                    label = { Text(label) },
+                    selected = destination == currentDestination,
+                    onClick = { currentDestination = destination }
                 )
             }
         }
@@ -87,10 +95,9 @@ fun LinkTCPApp() {
 }
 
 enum class AppDestinations(
-    val label: String,
     val icon: ImageVector,
 ) {
-    CONNECTION("Connect", Icons.Default.Cable),
-    LOG("Log", Icons.Default.History),
-    ABOUT("About", Icons.Default.Info),
+    CONNECTION(Icons.Default.Cable),
+    LOG(Icons.Default.History),
+    ABOUT(Icons.Default.Info),
 }

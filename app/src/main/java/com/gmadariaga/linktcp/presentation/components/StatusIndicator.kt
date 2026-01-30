@@ -21,7 +21,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.gmadariaga.linktcp.R
 import com.gmadariaga.linktcp.domain.model.ConnectionState
 import com.gmadariaga.linktcp.ui.theme.StatusConnected
 import com.gmadariaga.linktcp.ui.theme.StatusError
@@ -58,11 +60,11 @@ fun StatusIndicator(
     )
 
     val statusText = when (state) {
-        is ConnectionState.Idle -> "Idle"
-        is ConnectionState.Connecting -> "Connecting..."
-        is ConnectionState.Listening -> "Listening..."
-        is ConnectionState.Connected -> "Connected"
-        is ConnectionState.Error -> "Error"
+        is ConnectionState.Idle -> stringResource(R.string.status_idle)
+        is ConnectionState.Connecting -> stringResource(R.string.status_connecting)
+        is ConnectionState.Listening -> stringResource(R.string.status_listening)
+        is ConnectionState.Connected -> stringResource(R.string.status_connected)
+        is ConnectionState.Error -> stringResource(R.string.status_error)
     }
 
     Row(

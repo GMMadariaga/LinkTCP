@@ -16,8 +16,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
+import com.gmadariaga.linktcp.R
 
 @Composable
 fun MessageInput(
@@ -37,7 +39,7 @@ fun MessageInput(
             value = value,
             onValueChange = onValueChange,
             modifier = Modifier.weight(1f),
-            placeholder = { Text("Enter message...") },
+            placeholder = { Text(stringResource(R.string.enter_message)) },
             singleLine = true,
             enabled = enabled,
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Send),
@@ -50,7 +52,7 @@ fun MessageInput(
                 contentColor = MaterialTheme.colorScheme.primary
             )
         ) {
-            Icon(Icons.AutoMirrored.Filled.Send, contentDescription = "Send")
+            Icon(Icons.AutoMirrored.Filled.Send, contentDescription = stringResource(R.string.send))
         }
     }
 }

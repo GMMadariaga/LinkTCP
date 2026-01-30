@@ -1,8 +1,10 @@
 package com.gmadariaga.linktcp.presentation.screen
 
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,25 +14,39 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Language
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.core.os.LocaleListCompat
 import com.gmadariaga.linktcp.R
 
 @Composable
 fun AboutScreen(
     modifier: Modifier = Modifier
 ) {
+    var showLanguageMenu by remember { mutableStateOf(false) }
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -38,7 +54,38 @@ fun AboutScreen(
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.height(16.dp))
+        // Language selector at top right
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.End
+        ) {
+            IconButton(onClick = { showLanguageMenu = true }) {
+                Icon(
+                    Icons.Default.Language,
+                    contentDescription = stringResource(R.string.language),
+                    tint = MaterialTheme.colorScheme.primary
+                )
+            }
+            DropdownMenu(
+                expanded = showLanguageMenu,
+                onDismissRequest = { showLanguageMenu = false }
+            ) {
+                DropdownMenuItem(
+                    text = { Text("English") },
+                    onClick = {
+                        showLanguageMenu = false
+                        setAppLocale("en")
+                    }
+                )
+                DropdownMenuItem(
+                    text = { Text("Español") },
+                    onClick = {
+                        showLanguageMenu = false
+                        setAppLocale("es")
+                    }
+                )
+            }
+        }
 
         Image(
             painter = painterResource(id = R.drawable.ic_app_icon),
@@ -51,7 +98,7 @@ fun AboutScreen(
         Spacer(modifier = Modifier.height(16.dp))
 
         Text(
-            text = "LinkTCP",
+            text = stringResource(R.string.about_title),
             style = MaterialTheme.typography.headlineLarge,
             fontWeight = FontWeight.Bold
         )
@@ -63,7 +110,7 @@ fun AboutScreen(
         )
 
         Text(
-            text = "Connecting Devices. Testing Networks.",
+            text = stringResource(R.string.about_tagline),
             style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.primary,
             textAlign = TextAlign.Center
@@ -72,48 +119,41 @@ fun AboutScreen(
         Spacer(modifier = Modifier.height(24.dp))
 
         AboutSection(
-            title = "What is LinkTCP?",
-            content = "LinkTCP is a professional TCP/IP connection testing tool for Android. " +
-                    "It allows you to establish TCP connections as either a client or a server, " +
-                    "send and receive messages, and monitor network traffic in real-time."
+            title = stringResource(R.string.about_what_is),
+            content = stringResource(R.string.about_what_is_content)
         )
 
         AboutSection(
-            title = "Features",
-            content = "- Client Mode: Connect to any TCP server by IP and port\n" +
-                    "- Server Mode: Start a TCP server and accept incoming connections\n" +
-                    "- Real-time messaging with sent/received indicators\n" +
-                    "- Traffic statistics (bytes sent/received)\n" +
-                    "- Connection status visualization\n" +
-                    "- Message history log\n" +
-                    "- Automatic configuration persistence"
+            title = stringResource(R.string.about_features),
+            content = stringResource(R.string.about_features_content)
         )
 
         AboutSection(
-            title = "How to Use",
-            content = "1. Select mode: Choose 'Client' to connect to a server, or 'Server' to accept connections\n\n" +
-                    "2. Configure: Enter the host IP (client mode only) and port number\n\n" +
-                    "3. Connect: Tap the Connect button and watch the status indicator\n\n" +
-                    "4. Communicate: Once connected, type messages and tap send\n\n" +
-                    "5. Monitor: Check the Log tab for message history and traffic stats"
+            title = stringResource(R.string.about_how_to_use),
+            content = stringResource(R.string.about_how_to_use_content)
         )
 
         HorizontalDivider(modifier = Modifier.padding(vertical = 16.dp))
 
         Text(
-            text = "Developed by",
+            text = stringResource(R.string.developed_by),
             style = MaterialTheme.typography.labelMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
 
         Text(
-            text = "GMMadariaga",
+            text = stringResource(R.string.developer_name),
             style = MaterialTheme.typography.titleLarge,
             fontWeight = FontWeight.SemiBold
         )
 
         Spacer(modifier = Modifier.height(32.dp))
     }
+}
+
+private fun setAppLocale(languageCode: String) {
+    val localeList = LocaleListCompat.forLanguageTags(languageCode)
+    AppCompatDelegate.setApplicationLocales(localeList)
 }
 
 @Composable

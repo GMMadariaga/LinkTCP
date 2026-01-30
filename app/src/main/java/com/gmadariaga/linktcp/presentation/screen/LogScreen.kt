@@ -21,7 +21,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.gmadariaga.linktcp.R
 import com.gmadariaga.linktcp.presentation.components.MessageBubble
 import com.gmadariaga.linktcp.presentation.components.TrafficIndicator
 import com.gmadariaga.linktcp.presentation.viewmodel.ConnectionViewModel
@@ -36,11 +38,11 @@ fun LogScreen(
 
     Column(modifier = modifier.fillMaxSize()) {
         TopAppBar(
-            title = { Text("Message Log") },
+            title = { Text(stringResource(R.string.messages)) },
             actions = {
                 if (uiState.messages.isNotEmpty()) {
                     IconButton(onClick = viewModel::clearMessages) {
-                        Icon(Icons.Default.Delete, contentDescription = "Clear messages")
+                        Icon(Icons.Default.Delete, contentDescription = stringResource(R.string.clear_messages))
                     }
                 }
             }
@@ -60,7 +62,7 @@ fun LogScreen(
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = "No messages yet",
+                    text = stringResource(R.string.no_messages),
                     style = MaterialTheme.typography.bodyLarge,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

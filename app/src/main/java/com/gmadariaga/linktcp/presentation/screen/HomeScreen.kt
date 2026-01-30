@@ -20,7 +20,9 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.gmadariaga.linktcp.R
 import com.gmadariaga.linktcp.domain.model.ConnectionState
 import com.gmadariaga.linktcp.presentation.components.ConnectionCard
 import com.gmadariaga.linktcp.presentation.components.MessageBubble
@@ -88,7 +90,7 @@ fun HomeScreen(
                 item {
                     HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
                     Text(
-                        text = "Messages",
+                        text = stringResource(R.string.messages),
                         style = MaterialTheme.typography.titleSmall,
                         modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
                     )
