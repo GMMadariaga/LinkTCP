@@ -59,6 +59,8 @@ fun HomeScreen(
                 ConnectionCard(
                     config = uiState.config,
                     connectionState = uiState.connectionState,
+                    localIp = uiState.localIp,
+                    logs = uiState.logs,
                     onHostChange = viewModel::updateHost,
                     onPortChange = viewModel::updatePort,
                     onModeChange = viewModel::updateMode,

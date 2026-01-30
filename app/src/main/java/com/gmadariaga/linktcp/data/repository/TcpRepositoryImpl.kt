@@ -12,6 +12,9 @@ class TcpRepositoryImpl(
 
     override val connectionState: Flow<ConnectionState> = dataSource.connectionState
     override val incomingMessages: Flow<Message> = dataSource.incomingMessages
+    override val logs: Flow<String> = dataSource.logs
+
+    override fun getLocalIpAddress(): String = dataSource.getLocalIpAddress()
 
     override suspend fun connectAsClient(host: String, port: Int) {
         dataSource.connectAsClient(host, port)

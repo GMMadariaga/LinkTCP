@@ -28,7 +28,9 @@ data class ConnectionUiState(
     val messages: List<Message> = emptyList(),
     val currentMessage: String = "",
     val totalBytesSent: Long = 0,
-    val totalBytesReceived: Long = 0
+    val totalBytesReceived: Long = 0,
+    val localIp: String = "",
+    val logs: List<String> = emptyList()
 )
 
 class ConnectionViewModel(
@@ -46,7 +48,9 @@ class ConnectionViewModel(
     init {
         observeConnectionState()
         observeIncomingMessages()
+        observeLogs()
         loadSavedConfig()
+        loadLocalIp()
     }
 
     private fun observeConnectionState() {
@@ -70,12 +74,31 @@ class ConnectionViewModel(
         }
     }
 
+    private fun observeLogs() {
+        viewModelScope.launch {
+            tcpRepository.logs.collect { log ->
+                _uiState.update { state ->
+                    val newLogs = (state.logs + log).takeLast(50) // Keep last 50 logs
+                    state.copy(logs = newLogs)
+                }
+            }
+        }
+    }
+
     private fun loadSavedConfig() {
         viewModelScope.launch {
             settingsRepository.config.collect { config ->
                 _uiState.update { it.copy(config = config) }
             }
         }
+    }
+
+    private fun loadLocalIp() {
+        _uiState.update { it.copy(localIp = tcpRepository.getLocalIpAddress()) }
+    }
+
+    fun refreshLocalIp() {
+        loadLocalIp()
     }
 
     fun updateHost(host: String) {
@@ -101,6 +124,7 @@ class ConnectionViewModel(
         viewModelScope.launch {
             val config = _uiState.value.config
             settingsRepository.saveConfig(config)
+            refreshLocalIp()
 
             when (config.mode) {
                 ConnectionMode.CLIENT -> connectAsClientUseCase(config.host, config.port)
@@ -137,6 +161,10 @@ class ConnectionViewModel(
 
     fun clearMessages() {
         _uiState.update { it.copy(messages = emptyList(), totalBytesSent = 0, totalBytesReceived = 0) }
+    }
+
+    fun clearLogs() {
+        _uiState.update { it.copy(logs = emptyList()) }
     }
 
     class Factory(private val context: Context) : ViewModelProvider.Factory {

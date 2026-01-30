@@ -1,3 +1,56 @@
 <resources>
     <string name="app_name">LinkTCP</string>
+
+    <!-- Navigation -->
+    <string name="nav_connect">Connect</string>
+    <string name="nav_log">Log</string>
+    <string name="nav_about">About</string>
+
+    <!-- Connection Card -->
+    <string name="connection">Connection</string>
+    <string name="mode_client">Client</string>
+    <string name="mode_server">Server</string>
+    <string name="your_ip_address">Your IP Address</string>
+    <string name="host">Host</string>
+    <string name="port">Port</string>
+    <string name="connect">Connect</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="stop_server">Stop Server</string>
+    <string name="cancel">Cancel</string>
+    <string name="logs">Logs</string>
+
+    <!-- Status -->
+    <string name="status_idle">Idle</string>
+    <string name="status_connecting">Connecting…</string>
+    <string name="status_listening">Listening…</string>
+    <string name="status_connected">Connected</string>
+    <string name="status_error">Error</string>
+
+    <!-- Messages -->
+    <string name="messages">Messages</string>
+    <string name="no_messages">No messages yet</string>
+    <string name="enter_message">Enter message…</string>
+    <string name="send">Send</string>
+    <string name="clear_messages">Clear messages</string>
+
+    <!-- Traffic -->
+    <string name="sent">Sent</string>
+    <string name="received">Received</string>
+
+    <!-- About -->
+    <string name="about_title">LinkTCP</string>
+    <string name="about_tagline">Connecting Devices. Testing Networks.</string>
+    <string name="about_what_is">What is LinkTCP?</string>
+    <string name="about_what_is_content">LinkTCP is a professional TCP/IP connection testing tool for Android. It allows you to establish TCP connections as either a client or a server, send and receive messages, and monitor network traffic in real-time.</string>
+    <string name="about_features">Features</string>
+    <string name="about_features_content">• Client Mode: Connect to any TCP server by IP and port\n• Server Mode: Start a TCP server and accept incoming connections\n• Real-time messaging with sent/received indicators\n• Traffic statistics (bytes sent/received)\n• Connection status visualization\n• Message history log\n• Automatic configuration persistence</string>
+    <string name="about_how_to_use">How to Use</string>
+    <string name="about_how_to_use_content">1. Select mode: Choose \'Client\' to connect to a server, or \'Server\' to accept connections\n\n2. Configure: Enter the host IP (client mode only) and port number\n\n3. Connect: Tap the Connect button and watch the status indicator\n\n4. Communicate: Once connected, type messages and tap send\n\n5. Monitor: Check the Log tab for message history and traffic stats</string>
+    <string name="developed_by">Developed by</string>
+    <string name="developer_name">GMMadariaga</string>
+
+    <!-- Language -->
+    <string name="language">Language</string>
+    <string name="english">English</string>
+    <string name="spanish">Spanish</string>
 </resources>

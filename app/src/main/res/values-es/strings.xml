@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">LinkTCP</string>
+
+    <!-- Navigation -->
+    <string name="nav_connect">Conectar</string>
+    <string name="nav_log">Registro</string>
+    <string name="nav_about">Acerca de</string>
+
+    <!-- Connection Card -->
+    <string name="connection">Conexión</string>
+    <string name="mode_client">Cliente</string>
+    <string name="mode_server">Servidor</string>
+    <string name="your_ip_address">Tu dirección IP</string>
+    <string name="host">Host</string>
+    <string name="port">Puerto</string>
+    <string name="connect">Conectar</string>
+    <string name="disconnect">Desconectar</string>
+    <string name="stop_server">Detener servidor</string>
+    <string name="cancel">Cancelar</string>
+    <string name="logs">Registros</string>
+
+    <!-- Status -->
+    <string name="status_idle">Inactivo</string>
+    <string name="status_connecting">Conectando…</string>
+    <string name="status_listening">Escuchando…</string>
+    <string name="status_connected">Conectado</string>
+    <string name="status_error">Error</string>
+
+    <!-- Messages -->
+    <string name="messages">Mensajes</string>
+    <string name="no_messages">Sin mensajes aún</string>
+    <string name="enter_message">Escribe un mensaje…</string>
+    <string name="send">Enviar</string>
+    <string name="clear_messages">Limpiar mensajes</string>
+
+    <!-- Traffic -->
+    <string name="sent">Enviado</string>
+    <string name="received">Recibido</string>
+
+    <!-- About -->
+    <string name="about_title">LinkTCP</string>
+    <string name="about_tagline">Conectando Dispositivos. Probando Redes.</string>
+    <string name="about_what_is">¿Qué es LinkTCP?</string>
+    <string name="about_what_is_content">LinkTCP es una herramienta profesional para probar conexiones TCP/IP en Android. Permite establecer conexiones TCP como cliente o servidor, enviar y recibir mensajes, y monitorear el tráfico de red en tiempo real.</string>
+    <string name="about_features">Características</string>
+    <string name="about_features_content">• Modo Cliente: Conecta a cualquier servidor TCP por IP y puerto\n• Modo Servidor: Inicia un servidor TCP y acepta conexiones entrantes\n• Mensajería en tiempo real con indicadores de enviado/recibido\n• Estadísticas de tráfico (bytes enviados/recibidos)\n• Visualización del estado de conexión\n• Historial de mensajes\n• Persistencia automática de configuración</string>
+    <string name="about_how_to_use">Cómo usar</string>
+    <string name="about_how_to_use_content">1. Selecciona modo: Elige \'Cliente\' para conectar a un servidor, o \'Servidor\' para aceptar conexiones\n\n2. Configura: Ingresa la IP del host (solo modo cliente) y el número de puerto\n\n3. Conecta: Toca el botón Conectar y observa el indicador de estado\n\n4. Comunica: Una vez conectado, escribe mensajes y toca enviar\n\n5. Monitorea: Revisa la pestaña Registro para ver el historial y estadísticas</string>
+    <string name="developed_by">Desarrollado por</string>
+    <string name="developer_name">GMMadariaga</string>
+
+    <!-- Language -->
+    <string name="language">Idioma</string>
+    <string name="english">Inglés</string>
+    <string name="spanish">Español</string>
+</resources>

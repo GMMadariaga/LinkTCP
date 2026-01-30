@@ -7,7 +7,9 @@ import kotlinx.coroutines.flow.Flow
 interface TcpRepository {
     val connectionState: Flow<ConnectionState>
     val incomingMessages: Flow<Message>
+    val logs: Flow<String>
 
+    fun getLocalIpAddress(): String
     suspend fun connectAsClient(host: String, port: Int)
     suspend fun startServer(port: Int)
     suspend fun sendMessage(message: String)
